@@ -31,6 +31,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -62,20 +63,37 @@ import com.example.composecourse.Constants.favoriteCollectionsData
 import com.example.composecourse.ui.theme.ComposeCourseTheme
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val windowSize = calculateWindowSizeClass(activity = this)
+//            val windowSize = calculateWindowSizeClass(activity = this)
             ComposeCourseTheme {
+                WellnessScreen()
             }
         }
     }
 }
+@Composable
+fun WaterCounter(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.padding(16.dp)) {
+        var count = 0
+        Text("You've had $count glasses.")
+        Button(onClick = { count++ }, Modifier.padding(top = 8.dp)) {
+            Text("Add one")
+        }
+    }
+}
 
-        @Preview(widthDp = 360, heightDp = 640)
+@Composable
+fun WellnessScreen(modifier: Modifier = Modifier) {
+    WaterCounter(modifier)
+}
+        @Preview(widthDp = 360, heightDp = 640, showSystemUi = true)
         @Composable
-        fun MySoothePortraitPreview() {
+        fun WellnessScreenPreview() {
+            ComposeCourseTheme {
+                WellnessScreen()
+            }
         }
 
 
