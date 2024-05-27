@@ -115,7 +115,7 @@ fun ComposeCourseTheme(
     }
 
     MaterialTheme(
-        colorScheme =  if(!isSystemInDarkTheme()) LightColorScheme else DarkColorScheme,
+        colorScheme = colorScheme,
         typography = typography,
         content = content
     )
