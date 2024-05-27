@@ -59,3 +59,10 @@ val count: MutableState<Int> = remember{ mutableStateOf(0) }
 //use delegates like 'by' remove .value usage
 var count by remember { mutableStateOf(0) }
 ```
+
+## Restore state in Compose
+
+```kotlin 
+//use rememberSaveable to survive the configuration changes
+var count by rememberSaveable { mutableStateOf(0) }
+```
