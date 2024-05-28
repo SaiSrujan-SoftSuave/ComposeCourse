@@ -66,3 +66,37 @@ var count by remember { mutableStateOf(0) }
 //use rememberSaveable to survive the configuration changes
 var count by rememberSaveable { mutableStateOf(0) }
 ```
+
+## State hoisting
+A composable that uses remember to store an object contains internal state, which makes the composable stateful. This is useful in situations where a caller doesn't need to control the state and can use it without having to manage the state themselves. However, composables with internal state tend to be less reusable and harder to test.
+
+Composables that don't hold any state are called stateless composables. An easy way to create a stateless composable is by using state hoisting.
+
+**Stateful vs Stateless**
+
+A **stateless** composable is a composable that doesn't own any state, meaning it doesn't hold or define or modify new state.
+
+A **stateful** composable is a composable that owns a piece of state that can change over time.
+
+```kotlin
+@Composable
+fun StatelessCounter(count: Int, onIncrement: () -> Unit, modifier: Modifier = Modifier) {
+   Column(modifier = modifier.padding(16.dp)) {
+       if (count > 0) {
+           Text("You've had $count glasses.")
+       }
+       Button(onClick = onIncrement, Modifier.padding(top = 8.dp), enabled = count < 10) {
+           Text("Add one")
+       }
+   }
+}
+```
+
+```kotlin
+@Composable
+fun StatefulCounter(modifier: Modifier = Modifier) {
+   var count by rememberSaveable { mutableStateOf(0) }
+   StatelessCounter(count, { count++ }, modifier)
+}
+```
+
