@@ -1,4 +1,4 @@
-package com.example.composecourse
+ package com.example.composecourse
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,14 +24,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composecourse.ui.theme.ComposeCourseTheme
 
-class MainActivity : ComponentActivity() {
+ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -121,7 +119,7 @@ fun WellnessTaskItem(
     }
 }
 
-@Preview( backgroundColor = 0xFFFFFF, showBackground = true)
+@LightDarkThemePreview
 @Composable
 fun WellnessTaskItemPreview(modifier: Modifier = Modifier) {
     WellnessTaskItem(taskName = "This is the task", onClose = {}, onCheckedChange = { it ->
@@ -139,8 +137,7 @@ fun WellnessScreen(modifier: Modifier = Modifier,viewModel: WellNessViewModel) {
         })
     }
 }
-
-@Preview(widthDp = 360, heightDp = 640, showSystemUi = true)
+@LightDarkThemePreview
 @Composable
 fun WellnessScreenPreview() {
     ComposeCourseTheme {
