@@ -3,6 +3,7 @@ package com.example.composecourse
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,7 +33,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.scale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composecourse.ui.theme.ComposeCourseTheme
@@ -56,9 +59,11 @@ fun MyScreen(modifier: Modifier = Modifier) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.fillMaxSize().drawBehind {
-                drawCircle(color = Color.Green)
-            })
+            Canvas(modifier = Modifier.fillMaxSize()){
+                scale(scaleX = 10f, scaleY = 15f){
+                    drawCircle(color = Color.Green, radius = 10.dp.toPx())
+                }
+            }
         }
     }
 }
