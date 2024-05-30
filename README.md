@@ -47,3 +47,60 @@ Canvas(modifier = Modifier.fillMaxSize()){
                 }
             }
 ```
+
+![img_2.png](img_2.png)
+
+```kotlin
+ Canvas(
+                modifier = Modifier
+                    .padding(8.dp)
+                    .aspectRatio(3 / 2f)
+                    .fillMaxSize()
+            ) {
+                val barWidthPx = 1.dp.toPx()
+                drawRect(
+                    Color.Gray, style = Stroke(barWidthPx)
+                )
+                val verticalLines = 4
+                val verticalLinePx = size.width / (verticalLines + 1)
+                repeat(verticalLines) { i ->
+                    val startX = verticalLinePx * (i + 1)
+                    drawLine(
+                        Color.White,
+                        Offset(startX, 0f),
+                        Offset(startX, size.height),
+                        strokeWidth = barWidthPx
+                    )
+                }
+                val horizontalLines = 3
+                val sectionSize = size.height / (horizontalLines + 1)
+                repeat(horizontalLines) { i ->
+                    val startY = sectionSize * (i + 1)
+                    drawLine(
+                        Color.White,
+                        Offset(0f, startY),
+                        end = Offset(size.width,startY),
+                        strokeWidth = barWidthPx
+                    )
+                }
+                val path =Constant.generatePath(graphData,size)
+                val filledPath =Path()
+                filledPath.addPath(path)
+                filledPath.lineTo(size.width,size.height)
+                filledPath.lineTo(0f,size.height)
+                filledPath.close()
+
+                val brush = Brush.verticalGradient(listOf(
+                    Color.Green.copy(alpha = 0.6f),
+                    Color.Transparent
+                ))
+                drawPath(
+                    path = filledPath,
+                    brush =brush
+                )
+                drawPath(path, color = Color.Green, style = Stroke(2.dp.toPx()))
+
+            }
+```
+
+ 
